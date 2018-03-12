@@ -1,0 +1,18 @@
+-- begin SALES_PRODUCT
+create unique index IDX_SALES_PRODUCT_UNIQ_PRICE on SALES_PRODUCT (PRICE) ^
+create unique index IDX_SALES_PRODUCT_UNIQ_NAME on SALES_PRODUCT (NAME) ^
+-- end SALES_PRODUCT
+-- begin SALES_ORDER
+alter table SALES_ORDER add constraint FK_SALES_ORDER_CUSTOMER foreign key (CUSTOMER_ID) references SALES_CUSTOMER(ID)^
+alter table SALES_ORDER add constraint FK_SALES_ORDER_MARKET foreign key (MARKET_ID) references SALES_MARKET(ID)^
+create index IDX_SALES_ORDER_CUSTOMER on SALES_ORDER (CUSTOMER_ID)^
+create index IDX_SALES_ORDER_MARKET on SALES_ORDER (MARKET_ID)^
+-- end SALES_ORDER
+-- begin SALES_MARKET_PRODUCT_LINK
+alter table SALES_MARKET_PRODUCT_LINK add constraint FK_MARPRO_MARKET foreign key (MARKET_ID) references SALES_MARKET(ID)^
+alter table SALES_MARKET_PRODUCT_LINK add constraint FK_MARPRO_PRODUCT foreign key (PRODUCT_ID) references SALES_PRODUCT(ID)^
+-- end SALES_MARKET_PRODUCT_LINK
+-- begin SALES_ORDER_PRODUCT_LINK
+alter table SALES_ORDER_PRODUCT_LINK add constraint FK_ORDPRO_ORDER foreign key (ORDER_ID) references SALES_ORDER(ID)^
+alter table SALES_ORDER_PRODUCT_LINK add constraint FK_ORDPRO_PRODUCT foreign key (PRODUCT_ID) references SALES_PRODUCT(ID)^
+-- end SALES_ORDER_PRODUCT_LINK

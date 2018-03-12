@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.sales.web.market.MarketBrowse"
+        focusComponent="marketsTable"
+        lookupComponent="marketsTable"
+        messagesPack="com.company.sales.web.market">
+    <dsContext>
+        <groupDatasource id="marketsDs"
+                         class="com.company.sales.entity.Market"
+                         view="market-view">
+            <query>
+                <![CDATA[select e from sales$Market e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="marketsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="marketsTable"
+                datasource="marketsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="marketsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="address.country"/>
+                <column id="address.city"/>
+                <column id="address.street"/>
+                <column id="address.houseNumber"/>
+                <column id="marketType"/>
+            </columns>
+            <rows datasource="marketsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="marketsTable.create"/>
+                <button id="editBtn"
+                        action="marketsTable.edit"/>
+                <button id="removeBtn"
+                        action="marketsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

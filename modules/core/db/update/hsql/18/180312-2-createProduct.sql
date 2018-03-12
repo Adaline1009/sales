@@ -1,0 +1,2 @@
+create unique index IDX_SALES_PRODUCT_UNIQ_PRICE on SALES_PRODUCT (PRICE) ;
+create unique index IDX_SALES_PRODUCT_UNIQ_NAME on SALES_PRODUCT (NAME) ;
